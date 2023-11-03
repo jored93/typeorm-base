@@ -20,6 +20,6 @@ export const AppDataSource = new DataSource({
     password: TYPEORM_PASSWORD,
     database: TYPEORM_DATABASE,
     logging: true,
-    entities: [],
-    /* synchronize: true, */
+    entities: ['src/entities/**/*.ts'],
+    synchronize: true,
 })
