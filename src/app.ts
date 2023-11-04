@@ -7,9 +7,9 @@ import {
 } from 'routing-controllers';
 import { Container } from 'typedi';
 import { controllers } from './controllers';
+import { swaggerSpec } from './swagger';
+import { DOCS_ENABLED } from './config';
 
-import morgan from 'morgan'
-import cors from 'cors'
 
 // required by routing-controllers
 useContainer(Container);
@@ -17,8 +17,6 @@ useContainer(Container);
 // Create express server
 const app: express.Express = express();
 
-/* app.use(morgan('dev'));
-app.use(cors()); */
 
 const routingControllersOptions: any = {
     routePrefix: '/api/v1',
@@ -29,5 +27,10 @@ const routingControllersOptions: any = {
 };
 
 useExpressServer(app, routingControllersOptions);
+
+// Setup Swagger
+if (DOCS_ENABLED === 'true') {
+    swaggerSpec(getMetadataArgsStorage, routingControllersOptions, app);
+}
 
 export default app;
