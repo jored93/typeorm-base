@@ -1,6 +1,6 @@
-import { UserController } from './Users.controller';
+import { CatalogController } from './Catalog.controller';
 
 
 export const controllers = [
-    UserController
+    CatalogController
 ];
